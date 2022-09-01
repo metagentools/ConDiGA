@@ -1,0 +1,10 @@
+name: condiga
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python >=3.8
+  - biopython
+  - xlsxwriter
+  - tqdm
+  - click

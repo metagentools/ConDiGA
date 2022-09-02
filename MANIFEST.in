@@ -1,0 +1,7 @@
+include *.md
+include LICENSE
+
+recursive-include condiga_utils/ *
+
+global-exclude condiga_utils/ *.pyc
+global-exclude condiga_utils/__pycache__ *.pyc

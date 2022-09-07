@@ -64,14 +64,6 @@ __status__ = "Development"
     type=click.Path(exists=True),
 )
 @click.option(
-    "--k_val",
-    "-kv",
-    default=141,
-    required=False,
-    help="k value used to assemble the contigs",
-    type=int,
-)
-@click.option(
     "--rel-abundance",
     "-ra",
     default=0.0001,
@@ -110,7 +102,7 @@ __status__ = "Development"
     help="path to the output folder",
     type=click.Path(exists=True),
 )
-def main(contigs, kraken, genes, coverages, assembly_summary, k_val, rel_abundance, genome_coverage, map_threshold, nthreads, output):
+def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, genome_coverage, map_threshold, nthreads, output):
 
     """ConDiGA: Contigs directed gene annotation for accurate protein sequence database construction in metaproteomics."""
 
@@ -150,8 +142,9 @@ def main(contigs, kraken, genes, coverages, assembly_summary, k_val, rel_abundan
     # Get contig lengths
     # ----------------------------------------------------------------------
 
-    logger.info(f"Obtaining contig lengths")
-    contig_lengths = get_contig_lengths(contigs)
+    logger.info(f"Obtaining contig lengths and k value")
+    contig_lengths, k_val = get_contig_lengths(contigs)
+    logger.info(f"k value of contigs: {k_val}")
 
     # Get kraken result
     # ----------------------------------------------------------------------

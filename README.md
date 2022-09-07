@@ -52,22 +52,24 @@ Usage: condiga [OPTIONS]
   database construction in metaproteomics.
 
 Options:
-  -c, --contigs PATH            path to the contigs file  [required]
-  -k, --kraken PATH             path to the kraken results file  [required]
-  -g, --genes PATH              path to the genes file  [required]
-  -cov, --coverages PATH        path to the contig coverages file  [required]
-  -as, --assembly-summary PATH  path to the assembly_summary.txt file
-                                [required]
-
-  -k, --k_val INTEGER           k value used to assemble the contigs
-                                [required]
-
-  -ra, --rel-abundance FLOAT    minimum relative abundance cut-off
-  -gc, --genome-coverage FLOAT  minimum genome coverage cut-off
-  -mt, --map-threshold FLOAT    minimum mapping length threshold cut-off
-  -t, --nthreads INTEGER        number of threads to use
-  -o, --output PATH             path to the output folder  [required]
-  --help                        Show this message and exit.
+  -c, --contigs PATH              path to the contigs file  [required]
+  -k, --kraken PATH               path to the kraken results file  [required]
+  -g, --genes PATH                path to the genes file  [required]
+  -cov, --coverages PATH          path to the contig coverages file
+                                  [required]
+  -as, --assembly-summary PATH    path to the assembly_summary.txt file
+                                  [required]
+  -ra, --rel-abundance FLOAT RANGE
+                                  minimum relative abundance cut-off
+                                  [0<=x<=1]
+  -gc, --genome-coverage FLOAT RANGE
+                                  minimum genome coverage cut-off  [0<=x<=1]
+  -mt, --map-threshold FLOAT RANGE
+                                  minimum mapping length threshold cut-off
+                                  [0<=x<=1]
+  -t, --nthreads INTEGER          number of threads to use
+  -o, --output PATH               path to the output folder  [required]
+  --help                          Show this message and exit.
 ```
 
 ## Preprocessing

@@ -4,15 +4,20 @@ import os
 import subprocess
 import gzip
 import shutil
+import logging
 
-from datetime import datetime, timedelta
+from datetime import datetime
+
+# create logger
+logger = logging.getLogger("condiga 0.1")
 
 def download_genomes(taxid_list, assembly_summary, output):
 
     if not os.path.isdir(f"{output}/Assemblies/"):
         subprocess.run(f"mkdir -p {output}/Assemblies/", shell=True)
     else:
-        subprocess.run(f"rm -r {output}/Assemblies/*", shell=True)
+        subprocess.run(f"rm -rf {output}/Assemblies/", shell=True)
+        subprocess.run(f"mkdir -p {output}/Assemblies/", shell=True)
 
     taxid_dates = {}
     taxid_urls = {}
@@ -47,24 +52,26 @@ def download_genomes(taxid_list, assembly_summary, output):
                                 
                     local_file = url.split("/")[-1]+"_genomic.fna.gz"
 
-                    myfile_name = output+"Assemblies/"+url.split("/")[-1]+"_genomic.fna"
+                    myfile_name = output+"/Assemblies/"+url.split("/")[-1]+"_genomic.fna"
                     
                     if version_status == "latest" and genome_rep == "Full":
                     
                         if taxid not in taxid_dates:
 
                             if assembly_level in ["Complete Genome", "Contig", "Chromosome"]:
-                                subprocess.run("rsync --copy-links --times --verbose "+myurl.replace("ftp:", "rsync:")+" "+output+"Assemblies", shell=True)
+                                logger.info(f"Downloading from {myurl}")
+                                command = "rsync --copy-links --times --verbose "+myurl.replace("ftp:", "rsync:")+" "+output+"/Assemblies/"
+                                subprocess.run(command, shell=True)
 
-                                if os.path.exists(output+"Assemblies/"+local_file):
+                                if os.path.exists(output+"/Assemblies/"+local_file):
 
                                     try:
 
-                                        with gzip.open(output+"Assemblies/"+local_file, 'rb') as f_in:
+                                        with gzip.open(output+"/Assemblies/"+local_file, 'rb') as f_in:
                                             with open(myfile_name, 'wb') as f_out:
                                                 shutil.copyfileobj(f_in, f_out)
 
-                                        subprocess.run("rm "+output+"Assemblies/"+local_file, shell=True)
+                                        subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
 
                                         taxid_dates[taxid] = rel_date
                                         taxid_urls[taxid] = url
@@ -74,8 +81,8 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                     except:
 
-                                        if os.path.exists(output+"Assemblies/"+local_file):
-                                            subprocess.run("rm "+output+"Assemblies/"+local_file, shell=True)
+                                        if os.path.exists(output+"/Assemblies/"+local_file):
+                                            subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
 
 
                         else:
@@ -88,23 +95,24 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                 if not ((assembly_level!="Complete Genome" and taxid_assembly_level[taxid]=="Complete Genome") or (assembly_level=="Contig" and taxid_assembly_level[taxid]=="Chromosome")):
 
+                                    if not os.path.exists(output+"/Assemblies/"+local_file):
+                                        logger.info(f"Downloading from {myurl}")
+                                        command = "rsync --copy-links --times --verbose "+myurl.replace("ftp:", "rsync:")+" "+output+"/Assemblies/"
+                                        subprocess.run(command, shell=True)
 
-                                    if not os.path.exists(output+"Assemblies/"+local_file):
-                                        subprocess.run("rsync --copy-links --times --verbose "+myurl.replace("ftp:", "rsync:")+" "+output+"Assemblies", shell=True)
-
-                                        if os.path.exists(output+"Assemblies/"+local_file):
+                                        if os.path.exists(output+"/Assemblies/"+local_file):
 
                                             try:
 
-                                                with gzip.open(output+"Assemblies/"+local_file, 'rb') as f_in:
+                                                with gzip.open(output+"/Assemblies/"+local_file, 'rb') as f_in:
                                                     with open(myfile_name, 'wb') as f_out:
                                                         shutil.copyfileobj(f_in, f_out)
 
                                                 if taxid_file_path[taxid] != "":
                                                     if os.path.exists(taxid_file_path[taxid]):
-                                                        subprocess.run("rm "+taxid_file_path[taxid], shell=True)
+                                                        subprocess.run("rm -f "+taxid_file_path[taxid], shell=True)
 
-                                                subprocess.run("rm "+output+"Assemblies/"+local_file, shell=True)
+                                                subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
 
                                                 taxid_dates[taxid] = rel_date
                                                 taxid_urls[taxid] = url
@@ -114,8 +122,8 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                             except:
 
-                                                if os.path.exists(output+"Assemblies/"+local_file):
-                                                    subprocess.run("rm "+output+"Assemblies/"+local_file, shell=True)
+                                                if os.path.exists(output+"/Assemblies/"+local_file):
+                                                    subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
 
     return taxid_dates, taxid_urls, taxid_file_path, taxid_assembly_level, taxid_present        
 
@@ -139,7 +147,7 @@ def rename_and_copy_genomes(taxid_file_path, species_names_taxid_length, species
     if not os.path.isdir(f"{output}/Reference_Sequences/"):
         subprocess.run(f"mkdir -p {output}/Reference_Sequences/", shell=True)
     else:
-        subprocess.run(f"rm -r {output}/Reference_Sequences/*", shell=True)
+        subprocess.run(f"rm -rf {output}/Reference_Sequences/*", shell=True)
 
     with open(output+"species_stats.tsv", "w") as myfile:
     

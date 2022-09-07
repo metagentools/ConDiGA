@@ -150,61 +150,73 @@ def main(contigs, kraken, genes, coverages, assembly_summary, k_val, rel_abundan
     # Get contig lengths
     # ----------------------------------------------------------------------
 
+    logger.info(f"Obtaining contig lengths")
     contig_lengths = get_contig_lengths(contigs)
 
     # Get kraken result
     # ----------------------------------------------------------------------
 
+    logger.info(f"Processing taxids from kraken results")
     taxid_total_len, species_names_taxid, taxid_list, contig_taxid, taxid_contigs, taxid_to_species, species_names_taxid_length = get_kraken_result(kraken, contig_lengths)
 
     # Download genomes of taxids
     # ----------------------------------------------------------------------
     
+    logger.info(f"Download genomes of taxids")
     taxid_dates, taxid_urls, taxid_file_path, taxid_assembly_level, taxid_present = download_genomes(taxid_list, assembly_summary, output)
 
     # Get length of references
     # ----------------------------------------------------------------------
 
+    logger.info(f"Obtaining lengths of downloaded reference genomes")
     taxid_file_len = get_ref_lengths(taxid_present, taxid_file_path)
 
     # Get contig coverage values
     # ----------------------------------------------------------------------
 
+    logger.info(f"Getting contig coverage values")
     contig_coverages = get_coverage(coverages)
     
     # Get species genome coverage and relative abundance
-    #
+    # ----------------------------------------------------------------------
 
+    logger.info(f"Getting species genome coverage and relative abundance")
     species_genome_coverages, species_rel_abundance = get_species_stats(species_names_taxid_length, taxid_file_len, taxid_contigs, contig_lengths, contig_coverages)
 
     # Rename and copy selected species
     # ----------------------------------------------------------------------
 
+    logger.info(f"Renaming and copying reference genomes of selected species")
     rename_and_copy_genomes(taxid_file_path, species_names_taxid_length, species_genome_coverages, species_rel_abundance, rel_abundance, genome_coverage, output)
 
     # Write nucleotide gene sequences
     # ----------------------------------------------------------------------
 
+    logger.info(f"Writing nucleotide sequences of genes")
     write_nt_gene_seqs(genes, output)
 
     # Align genes to refs
     # ----------------------------------------------------------------------
 
+    logger.info(f"Aligning genes to reference genomes")
     align_genes_to_refs(map_threshold, nthreads, output)
 
     # Get reference IDs
     # ----------------------------------------------------------------------
 
+    logger.info(f"Obtaining IDs of reference genomes")
     ref_ids = get_ref_ids(output)
 
     # Get genes to mapped species
     # ----------------------------------------------------------------------
 
+    logger.info(f"Obtaining genes mapped to reference genomes")
     gene_bins = get_genes_mapped_to_species(ref_ids, output)
 
     # Get aa gene seqs mapped
     # ----------------------------------------------------------------------
 
+    logger.info(f"Obtaining amino acid sequences of genes mapped")
     gene_seq, genes_contigs, gene_species_mapped, unmapped_count = get_aa_gene_seqs(genes, gene_bins, taxid_present, taxid_to_species, contig_taxid, k_val)
 
     logger.info(f"Total number of genes: {len(gene_seq)}")
@@ -214,6 +226,7 @@ def main(contigs, kraken, genes, coverages, assembly_summary, k_val, rel_abundan
     # Write amino acid gene sequences
     # ----------------------------------------------------------------------
 
+    logger.info(f"Writing amino acide sequences of genes and gene annotations details")
     workbook_name = write_aa_gene_seqs(gene_species_mapped, gene_seq, output)
 
     logger.info(f"Gene annotation results can be found in {workbook_name}")

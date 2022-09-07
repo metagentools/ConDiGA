@@ -33,7 +33,6 @@ def get_kraken_result(kraken, contig_lengths):
                     
                     if species_strings[0] == "Candidatus":
                         my_species = species_strings[0] + " " + species_strings[1] + " " + species_strings[2]
-                        
                     elif species_strings[1] != "sp.":
                         my_species = species_strings[0] + " " + species_strings[1]
                     elif "(taxid" not in species_strings[3]:

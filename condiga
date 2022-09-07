@@ -124,7 +124,7 @@ def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, gen
     fileHandler.setFormatter(formatter)
     logger.addHandler(fileHandler)
 
-    logger.info("Welcome to ConDiGA: Contigs directed gene annotation for accurate protein sequence database construction in metaproteomics.")
+    logger.info(f"Welcome to ConDiGA: Contigs directed gene annotation for accurate protein sequence database construction in metaproteomics.")
 
     logger.info(f"Input arguments: ")
     logger.info(f"Contigs file: {contigs}")
@@ -231,12 +231,12 @@ def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, gen
     elapsed_time = time.time() - start_time
 
     # Print elapsed time for the process
-    logger.info("Elapsed time: " + str(elapsed_time) + " seconds")
+    logger.info(f"Elapsed time: {elapsed_time} seconds")
 
     # Exit program
     # ----------------------------------------------------------------------
 
-    logger.info("Thank you for using condiga!")
+    logger.info(f"Thank you for using condiga!")
 
 
 if __name__ == "__main__":

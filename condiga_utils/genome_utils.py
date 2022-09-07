@@ -48,11 +48,11 @@ def download_genomes(taxid_list, assembly_summary, output):
                     rel_date = row[14].split("/")
                     url = row[19]
                     
-                    myurl = url+"/"+url.split("/")[-1]+"_genomic.fna.gz"
+                    myurl = f"{url}/{url.split('/')[-1]}_genomic.fna.gz"
                                 
-                    local_file = url.split("/")[-1]+"_genomic.fna.gz"
+                    local_file = f"{url.split('/')[-1]}_genomic.fna.gz"
 
-                    myfile_name = output+"/Assemblies/"+url.split("/")[-1]+"_genomic.fna"
+                    myfile_name = f"{output}/Assemblies/{url.split('/')[-1]}_genomic.fna"
                     
                     if version_status == "latest" and genome_rep == "Full":
                     
@@ -60,18 +60,18 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                             if assembly_level in ["Complete Genome", "Contig", "Chromosome"]:
                                 logger.info(f"Downloading from {myurl}")
-                                command = "rsync --copy-links --times --verbose "+myurl.replace("ftp:", "rsync:")+" "+output+"/Assemblies/"
+                                command = f"rsync --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
                                 subprocess.run(command, shell=True)
 
-                                if os.path.exists(output+"/Assemblies/"+local_file):
+                                if os.path.exists(f"{output}/Assemblies/{local_file}"):
 
                                     try:
 
-                                        with gzip.open(output+"/Assemblies/"+local_file, 'rb') as f_in:
+                                        with gzip.open(f"{output}/Assemblies/{local_file}", 'rb') as f_in:
                                             with open(myfile_name, 'wb') as f_out:
                                                 shutil.copyfileobj(f_in, f_out)
 
-                                        subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
+                                        subprocess.run(f"rm -f {output}/Assemblies/{local_file}", shell=True)
 
                                         taxid_dates[taxid] = rel_date
                                         taxid_urls[taxid] = url
@@ -81,8 +81,8 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                     except:
 
-                                        if os.path.exists(output+"/Assemblies/"+local_file):
-                                            subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
+                                        if os.path.exists(f"{output}/Assemblies/{local_file}"):
+                                            subprocess.run(f"rm -f {output}/Assemblies/{local_file}", shell=True)
 
 
                         else:
@@ -95,24 +95,24 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                 if not ((assembly_level!="Complete Genome" and taxid_assembly_level[taxid]=="Complete Genome") or (assembly_level=="Contig" and taxid_assembly_level[taxid]=="Chromosome")):
 
-                                    if not os.path.exists(output+"/Assemblies/"+local_file):
+                                    if not os.path.exists(f"{output}/Assemblies/{local_file}"):
                                         logger.info(f"Downloading from {myurl}")
-                                        command = "rsync --copy-links --times --verbose "+myurl.replace("ftp:", "rsync:")+" "+output+"/Assemblies/"
+                                        command = f"rsync --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
                                         subprocess.run(command, shell=True)
 
-                                        if os.path.exists(output+"/Assemblies/"+local_file):
+                                        if os.path.exists(f"{output}/Assemblies/{local_file}"):
 
                                             try:
 
-                                                with gzip.open(output+"/Assemblies/"+local_file, 'rb') as f_in:
+                                                with gzip.open(f"{output}/Assemblies/{local_file}", 'rb') as f_in:
                                                     with open(myfile_name, 'wb') as f_out:
                                                         shutil.copyfileobj(f_in, f_out)
 
                                                 if taxid_file_path[taxid] != "":
                                                     if os.path.exists(taxid_file_path[taxid]):
-                                                        subprocess.run("rm -f "+taxid_file_path[taxid], shell=True)
+                                                        subprocess.run(f"rm -f {taxid_file_path[taxid]}", shell=True)
 
-                                                subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
+                                                subprocess.run(f"rm -f {output}/Assemblies/{local_file}", shell=True)
 
                                                 taxid_dates[taxid] = rel_date
                                                 taxid_urls[taxid] = url
@@ -122,8 +122,8 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                             except:
 
-                                                if os.path.exists(output+"/Assemblies/"+local_file):
-                                                    subprocess.run("rm -f "+output+"/Assemblies/"+local_file, shell=True)
+                                                if os.path.exists(f"{output}/Assemblies/{local_file}"):
+                                                    subprocess.run(f"rm -f {output}/Assemblies/{local_file}", shell=True)
 
     return taxid_dates, taxid_urls, taxid_file_path, taxid_assembly_level, taxid_present        
 
@@ -134,7 +134,7 @@ def get_ref_lengths(taxid_present, taxid_file_path):
 
     for taxid in taxid_present:
         
-        command = 'grep -v ">" '+taxid_file_path[taxid]+' | wc | awk \'{print $3-$1}\''
+        command = 'grep -v ">" ' + taxid_file_path[taxid] + ' | wc | awk \'{print $3-$1}\''
         n = subprocess.check_output(command, shell=True)
 
         taxid_file_len[taxid] = int(n.decode("utf-8").strip())
@@ -147,25 +147,26 @@ def rename_and_copy_genomes(taxid_file_path, species_names_taxid_length, species
     if not os.path.isdir(f"{output}/Reference_Sequences/"):
         subprocess.run(f"mkdir -p {output}/Reference_Sequences/", shell=True)
     else:
-        subprocess.run(f"rm -rf {output}/Reference_Sequences/*", shell=True)
+        subprocess.run(f"rm -rf {output}/Reference_Sequences/", shell=True)
+        subprocess.run(f"mkdir -p {output}/Reference_Sequences/", shell=True)
 
-    with open(output+"species_stats.tsv", "w") as myfile:
+    with open(f"{output}/species_stats.tsv", "w") as myfile:
     
-        myfile.write("Species name\tRelative abundance\tGenome coverage\n")
+        myfile.write(f"Species name\tRelative abundance\tGenome coverage\n")
         
         for species in species_rel_abundance:
 
             if species_rel_abundance[species] > rel_abundance and species_genome_coverages[species] > genome_coverage:
                 
-                myfile.write(species+"\t"+str(species_rel_abundance[species])+"\t"+str(species_genome_coverages[species])+"\n")
+                myfile.write(f"{species}\t{species_rel_abundance[species]}\t{species_genome_coverages[species]}\n")
 
                 for taxid in species_names_taxid_length[species]:
-                    subprocess.run("cp "+taxid_file_path[taxid]+" "+output+"/Reference_Sequences/"+taxid+".fna", shell=True)
+                    subprocess.run(f"cp {taxid_file_path[taxid]} {output}/Reference_Sequences/{taxid}.fna", shell=True)
 
 
 def get_ref_ids(output):
 
-    reference_files = glob.glob(output+'/Reference_Sequences/*.fna')
+    reference_files = glob.glob(f"{output}/Reference_Sequences/*.fna")
 
     ref_ids = {}
 

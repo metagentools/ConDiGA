@@ -20,7 +20,7 @@ def write_nt_gene_seqs(genes, output):
             
             gene_nt_seq[gene_id] = seq
 
-    with open(output+"/all_genes.fna", "w") as ntfile:
+    with open(f"{output}/all_genes.fna", "w") as ntfile:
         for gene in gene_nt_seq:
             ntfile.write(gene_nt_seq[gene])
 
@@ -55,7 +55,7 @@ def align_genes_to_refs(threshold, nthreads, output):
     contig_ref_aln_length = defaultdict(list)
     contig_length = {}
 
-    for line in open(output+'/all_genes.paf'):
+    for line in open(f"{output}/all_genes.paf"):
         data = line.strip().split('\t')
         #     1	string	Query sequence name
         #     2	int	Query sequence length
@@ -87,7 +87,7 @@ def align_genes_to_refs(threshold, nthreads, output):
             contig_ref_aln_length[qname].append(aln_len)
             contig_length[qname] = qlen
 
-    with open(output+'/all_genes.output', 'w+') as f:
+    with open(f"{output}/all_genes.output", 'w+') as f:
         for k, v in contig_ref.items():
             best = None
             best_len = 0
@@ -117,7 +117,7 @@ def get_genes_mapped_to_species(ref_ids, output):
 
     gene_bins = {}
 
-    with open(output+'/all_genes.output', mode='r') as myfile:
+    with open(f"{output}/all_genes.output", mode='r') as myfile:
         
         for line in myfile.readlines():
             
@@ -156,7 +156,7 @@ def get_aa_gene_seqs(genes, gene_bins, taxid_present, taxid_to_species, contig_t
             
             contig_id = seq.split(">")[-1].split(" ")[0]
             
-            contig_num = int(re.search('%s(.*)%s' % (start_n, end_n), seq.split(">")[-1].split(" ")[0]).group(1))
+            contig_num = int(re.search('%s(.*)%s' % (start_n, end_n), contig_id).group(1))
             
             strings = seq.split(">")
             
@@ -193,7 +193,7 @@ def write_aa_gene_seqs(gene_species_mapped, gene_seq, output):
 
     gene_species = {"GeneID":"Annotation"}
 
-    with open(output+"/all_genes.faa", "w") as aafile:
+    with open(f"{output}/all_genes.faa", "w") as aafile:
         for gene in gene_species_mapped:
             
             gene_id = gene
@@ -201,7 +201,7 @@ def write_aa_gene_seqs(gene_species_mapped, gene_seq, output):
             if gene_species_mapped[gene] == "unmapped":
                 gene_species[gene_id] = "-"
             else:
-                gene_species[gene_id] = "["+gene_species_mapped[gene].replace("_", " ")+"]"
+                gene_species[gene_id] = f"[{gene_species_mapped[gene].replace('_', ' ')}]"
                 
             aafile.write(gene_seq[gene])
 
@@ -209,7 +209,7 @@ def write_aa_gene_seqs(gene_species_mapped, gene_seq, output):
     od = collections.OrderedDict(sorted(gene_species.items()))
 
     # Create a workbook and add a worksheet
-    workbook_name = output+"/genes.species.mapped.xlsx"
+    workbook_name = f"{output}/genes.species.mapped.xlsx"
     workbook = xlsxwriter.Workbook(workbook_name)
     worksheet = workbook.add_worksheet()
 
@@ -226,7 +226,7 @@ def write_aa_gene_seqs(gene_species_mapped, gene_seq, output):
     workbook.close()
 
     # Write to csv file
-    with open(output+"/genes.species.mapped.csv", 'w') as csv_file:  
+    with open(f"{output}/genes.species.mapped.csv", 'w') as csv_file:  
         writer = csv.writer(csv_file)
         for key, value in gene_species.items():
             writer.writerow([key, value])

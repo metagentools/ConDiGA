@@ -1,5 +1,6 @@
 import subprocess
 import re
+import csv
 import xlsxwriter
 import collections
 
@@ -223,5 +224,11 @@ def write_aa_gene_seqs(gene_species_mapped, gene_seq, output):
         row += 1
         
     workbook.close()
+
+    # Write to csv file
+    with open(output+"/genes.species.mapped.csv", 'w') as csv_file:  
+        writer = csv.writer(csv_file)
+        for key, value in gene_species.items():
+            writer.writerow([key, value])
 
     return workbook_name

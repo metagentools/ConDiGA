@@ -43,7 +43,7 @@ After setting up, run the following command to ensure that `condiga` is working.
 condiga --help
 ```
 
-## Usage
+### Usage
 
 ```
 Usage: condiga [OPTIONS]
@@ -69,3 +69,56 @@ Options:
   -o, --output PATH             path to the output folder  [required]
   --help                        Show this message and exit.
 ```
+
+## Preprocessing
+
+Before running ConDiGA, you have to process your data as follows.
+
+### Step 1: Assemble reads into contigs
+
+You have to assemble your reads into contigs using [MEGAHIT](https://github.com/voutcn/megahit) as follows.
+
+```
+megahit -1 Reads/reads_1.fq.gz -2 Reads/reads_2.fq.gz --k-min 21 --k-max 141 -o MEGAHIT_output -t 16
+```
+
+### Step 2: Run Kraken2 on the contigs
+
+Next, you have to run your contigs through [Kraken2](https://ccb.jhu.edu/software/kraken2/) as follows. `$DBNAME` is the path to your Kraken database.
+
+```
+kraken2 --threads 16 --db $DBNAME --use-names --output kraken_res_0.1.txt --confidence 0.1 --report kraken_report_0.1.txt MEGAHIT_output/final.contigs.fa
+```
+
+### Step 3: Obtain coverage of contigs
+
+You can use [CoverM](https://github.com/wwood/CoverM) to get the coverage values of contigs as follows.
+
+```
+coverm contig -1 Reads/reads_1.fastq -2 Reads/reads_2.fastq -r MEGAHIT_output/final.contigs.fa -o contig_coverage.tsv -t 16
+```
+
+### Step 4: Predict genes in contigs
+
+You can predict the genes in the contigs using [MetaGeneMark](http://exon.gatech.edu/meta_gmhmmp.cgi) as follows. You will find the nucleotide and amino acid sequences of the predicted genes in a file named `final.contigs.fa.lst`.
+
+```
+gmhmmp -m MetaGeneMark_v1.mod final.contigs.fa
+```
+
+### Step 5: Download `assembly_summary.txt` file.
+
+You can download the assembly summary file for bacteria from [NCBI](https://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/) as follows.
+
+```
+wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/assembly_summary.txt
+```
+
+## Running ConDiGA
+
+Once you have preprocessed your data and obtained all the necessary files, you can run `condiga` as follows.
+
+```
+condiga -c final.contigs.fa -k kraken_res_0.1.txt -g final.contigs.fa.lst -cov contig_coverages.tsv -as assembly_summary.txt -o <output_folder>
+```
+

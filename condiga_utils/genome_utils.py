@@ -160,7 +160,7 @@ def rename_and_copy_genomes(taxid_file_path, species_names_taxid_length, species
                 myfile.write(species+"\t"+str(species_rel_abundance[species])+"\t"+str(species_genome_coverages[species])+"\n")
 
                 for taxid in species_names_taxid_length[species]:
-                    subprocess.run("cp "+taxid_file_path[taxid]+" "+output+"Reference_Sequences/"+taxid+".fna", shell=True)
+                    subprocess.run("cp "+taxid_file_path[taxid]+" "+output+"/Reference_Sequences/"+taxid+".fna", shell=True)
 
 
 def get_ref_ids(output):

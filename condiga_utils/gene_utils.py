@@ -43,13 +43,16 @@ def get_seqs(path):
 def align_genes_to_refs(threshold, nthreads, output):
     
     # Concatenate all references
-    subprocess.run(f"cat {output}/Reference_Sequences/*.fna > {output}/Reference_Sequences/refs.fna")
+    command = f"cat {output}/Reference_Sequences/*.fna > {output}/Reference_Sequences/refs.fna"
+    subprocess.run(command, shell=True)
 
     # Run minimap2
-    subprocess.run(f"minimap2 -t {nthreads} {output}/Reference_Sequences/refs.fna {output}/all_genes.fna > {output}/all_genes.paf")
+    command = f"minimap2 -t {nthreads} {output}/Reference_Sequences/refs.fna {output}/all_genes.fna > {output}/all_genes.paf"
+    subprocess.run(command, shell=True)
 
     # Remove concatenated reference files
-    subprocess.run(f"rm {output}/Reference_Sequences/refs.fna")
+    command = f"rm {output}/Reference_Sequences/refs.fna"
+    subprocess.run(command, shell=True)
 
     contig_ref = defaultdict(list)
     contig_ref_aln_length = defaultdict(list)

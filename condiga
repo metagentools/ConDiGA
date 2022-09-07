@@ -65,9 +65,9 @@ __status__ = "Development"
 )
 @click.option(
     "--k_val",
-    "-k",
-    default=8,
-    required=True,
+    "-kv",
+    default=141,
+    required=False,
     help="k value used to assemble the contigs",
     type=int,
 )

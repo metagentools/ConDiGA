@@ -1,4 +1,4 @@
-# ConDiGA: Contigs directed gene annotation for accurate protein sequence database construction in metaproteomics
+# ConDiGA
 
 ![GitHub](https://img.shields.io/github/license/metagentools/ConDiGA)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -23,7 +23,7 @@ cd ConDiGA/
 
 ### Using `conda`
 
-Once you have installed `conda`, make sure you are in the `ConDiGA` folder. Now run the following commands to create a `conda` environment and activate it to run `phables`.
+Once you have installed `conda`, make sure you are in the `ConDiGA` folder. Now run the following commands to create a `conda` environment and activate it to run `condiga`.
 
 ```
 conda env create -f environment.yml
@@ -31,7 +31,7 @@ conda activate condiga
 ```
 
 ### Using `pip`
-You can run the following command to install phables using `pip`. Make sure you are in the `ConDiGA` folder.
+You can run the following command to install `condiga` using `pip`. Make sure you are in the `ConDiGA` folder.
 
 ```
 pip install .

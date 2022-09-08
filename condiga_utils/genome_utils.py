@@ -151,6 +151,9 @@ def rename_and_copy_genomes(taxid_file_path, species_names_taxid_length, species
         subprocess.run(f"rm -rf {output}/Reference_Sequences/", shell=True)
         subprocess.run(f"mkdir -p {output}/Reference_Sequences/", shell=True)
 
+    n_species = 0
+    n_taxid = 0
+
     with open(f"{output}/species_stats.tsv", "w") as myfile:
     
         myfile.write(f"Species name\tRelative abundance\tGenome coverage\n")
@@ -160,9 +163,14 @@ def rename_and_copy_genomes(taxid_file_path, species_names_taxid_length, species
             if species_rel_abundance[species] > rel_abundance and species_genome_coverages[species] > genome_coverage:
                 
                 myfile.write(f"{species}\t{species_rel_abundance[species]}\t{species_genome_coverages[species]}\n")
+                n_species += 1
 
                 for taxid in species_names_taxid_length[species]:
+                    n_taxid += 1
                     subprocess.run(f"cp {taxid_file_path[taxid]} {output}/Reference_Sequences/{taxid}.fna", shell=True)
+
+    logger.info(f"{n_species} were idenitified with {n_taxid} taxids")
+    logger.info(f"Relative abundance and genome coverage of each species can be found in {output}/species_stats.tsv")
 
 
 def get_ref_ids(output):

@@ -1,6 +1,7 @@
 import csv
 import glob
 import os
+import sys
 import subprocess
 import gzip
 import shutil
@@ -173,9 +174,10 @@ def get_ref_ids(output):
     for ref in reference_files:
         ref_name = ref.split("/")[-1][:-4]
         command = 'grep "^>" ' + ref
-        pp = subprocess.check_output(command)
-        
-        for item in pp:
+        entries = subprocess.check_output(command, shell=True).decode(sys.stdout.encoding).strip().split("\n")
+
+        for item in entries:
+            
             myid = item.split(" ")[0][1:]
             
             if ref_name not in ref_ids:

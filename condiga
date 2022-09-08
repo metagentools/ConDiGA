@@ -151,11 +151,12 @@ def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, gen
 
     logger.info(f"Processing taxids from kraken results")
     taxid_total_len, species_names_taxid, taxid_list, contig_taxid, taxid_contigs, taxid_to_species, species_names_taxid_length = get_kraken_result(kraken, contig_lengths)
+    logger.info(f"{len(taxid_list)} taxid were found in the kraken result")
 
     # Download genomes of taxids
     # ----------------------------------------------------------------------
     
-    logger.info(f"Download genomes of taxids")
+    logger.info(f"Downloading genomes of taxids")
     taxid_dates, taxid_urls, taxid_file_path, taxid_assembly_level, taxid_present = download_genomes(taxid_list, assembly_summary, output)
 
     # Get length of references

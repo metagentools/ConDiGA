@@ -34,11 +34,6 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Bio-Informatics",
         "Operating System :: OS Independent",
     ],
-    install_requires=[
-        "biopython",
-        "tqdm",
-        "XlsxWriter",
-        "click"
-    ],
+    install_requires=["biopython", "tqdm", "XlsxWriter", "click"],
     python_requires=">=3.8",
 )

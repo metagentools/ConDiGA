@@ -2,6 +2,7 @@ import re
 
 from Bio import SeqIO
 
+
 def get_contig_lengths(contigs):
     contig_lengths = {}
 
@@ -15,7 +16,7 @@ def get_contig_lengths(contigs):
 
     start_n = "k"
     end_n = "_"
-    
-    k_val = int(re.search(r'%s(.*)%s' % (start_n, end_n), record_id).group(1))
+
+    k_val = int(re.search(r"%s(.*)%s" % (start_n, end_n), record_id).group(1))
 
     return contig_lengths, k_val

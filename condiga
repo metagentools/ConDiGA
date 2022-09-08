@@ -6,11 +6,15 @@ import time
 import click
 
 from condiga_utils.contig_utils import get_contig_lengths
-from condiga_utils.kraken_utils import get_kraken_result
-from condiga_utils.genome_utils import download_genomes, rename_and_copy_genomes, get_ref_lengths, get_ref_ids
 from condiga_utils.coverage_utils import get_coverage
+from condiga_utils.gene_utils import (align_genes_to_refs, get_aa_gene_seqs,
+                                      get_genes_mapped_to_species,
+                                      write_aa_gene_seqs, write_nt_gene_seqs)
+from condiga_utils.genome_utils import (download_genomes, get_ref_ids,
+                                        get_ref_lengths,
+                                        rename_and_copy_genomes)
+from condiga_utils.kraken_utils import get_kraken_result
 from condiga_utils.species_utils import get_species_stats
-from condiga_utils.gene_utils import write_nt_gene_seqs, write_aa_gene_seqs, align_genes_to_refs, get_genes_mapped_to_species, get_aa_gene_seqs
 
 __author__ = "Vijini Mallawaarachchi and Yu Lin"
 __copyright__ = "Copyright 2022, ConDiGA Project"

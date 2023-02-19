@@ -9,7 +9,7 @@ import sys
 from datetime import datetime
 
 # create logger
-logger = logging.getLogger("condiga 0.1")
+logger = logging.getLogger("condiga 0.1.0")
 
 
 def download_genomes(taxid_list, assembly_summary, output):

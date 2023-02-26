@@ -67,7 +67,7 @@ def download_genomes(taxid_list, assembly_summary, output):
                                 "Chromosome",
                             ]:
                                 logger.info(f"Downloading from {myurl}")
-                                command = f"rsync --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
+                                command = f"rsync -P --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
                                 subprocess.run(command, shell=True)
 
                                 if os.path.exists(f"{output}/Assemblies/{local_file}"):
@@ -234,6 +234,8 @@ def rename_and_copy_genomes(
                     f"{species}\t{species_rel_abundance[species]}\t{species_genome_coverages[species]}\n"
                 )
                 n_species += 1
+
+                logger.info(f"{n_species} {species}: {species_rel_abundance[species]}, {species_genome_coverages[species]}")
 
                 for taxid in species_names_taxid_length[species]:
                     n_taxid += 1

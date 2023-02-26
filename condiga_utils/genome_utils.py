@@ -138,9 +138,18 @@ def download_genomes(taxid_list, assembly_summary, output):
                                     if not os.path.exists(
                                         f"{output}/Assemblies/{local_file}"
                                     ):
+                                        
                                         logger.info(f"Downloading from {myurl}")
-                                        command = f"rsync --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
-                                        subprocess.run(command, shell=True)
+                                        
+                                        command = ""
+
+                                        if myurl.startswith('https:'):
+                                            command = f"rsync -P --copy-links --times --verbose {myurl.replace('https:', 'rsync:')} {output}/Assemblies/"
+                                        elif myurl.startswith('ftp:'):
+                                            command = f"rsync -P --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
+                                        
+                                        if command != "":
+                                            subprocess.run(command, shell=True)
 
                                         if os.path.exists(
                                             f"{output}/Assemblies/{local_file}"

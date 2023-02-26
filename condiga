@@ -13,7 +13,7 @@ from condiga_utils.gene_utils import (align_genes_to_refs, get_aa_gene_seqs,
 from condiga_utils.genome_utils import (download_genomes, get_ref_ids,
                                         get_ref_lengths,
                                         rename_and_copy_genomes)
-from condiga_utils.kraken_utils import get_kraken_result
+from condiga_utils.taxa_utils import get_taxa_result
 from condiga_utils.species_utils import get_species_stats
 
 __author__ = "Vijini Mallawaarachchi and Yu Lin"
@@ -40,10 +40,10 @@ __status__ = "Development"
     type=click.Path(exists=True),
 )
 @click.option(
-    "--kraken",
-    "-k",
+    "--taxa",
+    "-ta",
     required=True,
-    help="path to the kraken results file",
+    help="path to the taxanomic classification results file",
     type=click.Path(exists=True),
 )
 @click.option(
@@ -71,6 +71,7 @@ __status__ = "Development"
     "--rel-abundance",
     "-ra",
     default=0.0001,
+    show_default=True,
     required=False,
     help="minimum relative abundance cut-off",
     type=click.FloatRange(0, 1),
@@ -79,6 +80,7 @@ __status__ = "Development"
     "--genome-coverage",
     "-gc",
     default=0.001,
+    show_default=True,
     required=False,
     help="minimum genome coverage cut-off",
     type=click.FloatRange(0, 1),
@@ -87,6 +89,7 @@ __status__ = "Development"
     "--map-threshold",
     "-mt",
     default=0.5,
+    show_default=True,
     required=False,
     help="minimum mapping length threshold cut-off",
     type=click.FloatRange(0, 1),
@@ -95,6 +98,7 @@ __status__ = "Development"
     "--nthreads",
     "-t",
     default=8,
+    show_default=True,
     required=False,
     help="number of threads to use",
     type=int,
@@ -106,7 +110,7 @@ __status__ = "Development"
     help="path to the output folder",
     type=click.Path(exists=True),
 )
-def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, genome_coverage, map_threshold, nthreads, output):
+def main(contigs, taxa, genes, coverages, assembly_summary, rel_abundance, genome_coverage, map_threshold, nthreads, output):
 
     """ConDiGA: Contigs directed gene annotation for accurate protein sequence database construction in metaproteomics."""
 
@@ -132,7 +136,7 @@ def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, gen
 
     logger.info(f"Input arguments: ")
     logger.info(f"Contigs file: {contigs}")
-    logger.info(f"Kraken results file: {kraken}")
+    logger.info(f"Taxanomic classification results file: {taxa}")
     logger.info(f"Genes file: {genes}")
     logger.info(f"Contig coverages file: {coverages}")
     logger.info(f"Path to assembly_summary.txt file: {assembly_summary}")
@@ -153,9 +157,9 @@ def main(contigs, kraken, genes, coverages, assembly_summary, rel_abundance, gen
     # Get kraken result
     # ----------------------------------------------------------------------
 
-    logger.info(f"Processing taxids from kraken results")
-    taxid_total_len, species_names_taxid, taxid_list, contig_taxid, taxid_contigs, taxid_to_species, species_names_taxid_length = get_kraken_result(kraken, contig_lengths)
-    logger.info(f"{len(taxid_list)} taxid were found in the kraken result")
+    logger.info(f"Processing taxids from taxanomic classification results")
+    taxid_total_len, species_names_taxid, taxid_list, contig_taxid, taxid_contigs, taxid_to_species, species_names_taxid_length = get_taxa_result(taxa, contig_lengths)
+    logger.info(f"{len(taxid_list)} taxid were found in the taxanomic classification result")
 
     # Download genomes of taxids
     # ----------------------------------------------------------------------

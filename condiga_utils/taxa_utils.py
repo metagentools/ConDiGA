@@ -1,6 +1,3 @@
-import re
-
-
 def get_taxa_result(taxa, contig_lengths):
 
     taxid_total_len = {}
@@ -37,8 +34,11 @@ def get_taxa_result(taxa, contig_lengths):
 
                 my_species = ""
 
-                if species_strings[0] == "Candidatus":
-                    my_species = species_strings[0] + " " + species_strings[1] + " " + species_strings[2]
+                if species_strings[0] == "Candidatus" or species_strings[0] == "MAG:":
+                    if len(species_strings) > 2:
+                        my_species = species_strings[0] + " " + species_strings[1] + " " + species_strings[2]
+                    else:
+                        my_species = species_strings[0] + " " + species_strings[1]
                 elif species_strings[1] != "sp.":
                     my_species = species_strings[0] + " " + species_strings[1]
                 # else:

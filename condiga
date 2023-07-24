@@ -110,6 +110,7 @@ __status__ = "Development"
     help="path to the output folder",
     type=click.Path(exists=True),
 )
+@click.version_option(__version__, "-v", "--version", is_flag=True)
 def main(contigs, taxa, genes, coverages, assembly_summary, rel_abundance, genome_coverage, map_threshold, nthreads, output):
 
     """ConDiGA: Contigs directed gene annotation for accurate protein sequence database construction in metaproteomics."""

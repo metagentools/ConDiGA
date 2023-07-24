@@ -5,7 +5,6 @@ def get_species_stats(
     contig_lengths,
     contig_coverages,
 ):
-
     # Length
     species_ref_length = {}
     species_contig_length = {}
@@ -35,7 +34,6 @@ def get_species_stats(
     total_reads_mapped = 0
 
     for species in species_names_taxid_length:
-
         # Length
 
         total_sum = 0
@@ -43,7 +41,6 @@ def get_species_stats(
         species_count = 0
 
         for taxid in species_names_taxid_length[species]:
-
             if taxid in taxid_file_len:
                 if taxid_file_len[taxid] != 0:
                     total_sum += taxid_file_len[taxid]
@@ -65,7 +62,6 @@ def get_species_stats(
         total_contig_length = 0
 
         for taxid in species_names_taxid_length[species]:
-
             for contig in taxid_contigs[taxid]:
                 total_sum += contig_lengths[contig] * contig_coverages[contig]
                 total_contig_length += contig_lengths[contig]
@@ -80,7 +76,6 @@ def get_species_stats(
         total_contig_length = 0
 
         for taxid in species_names_taxid_length[species]:
-
             for contig in taxid_contigs[taxid]:
                 total_contig_length += contig_lengths[contig]
 
@@ -96,7 +91,6 @@ def get_species_stats(
         species_reads = 0
 
         for taxid in species_names_taxid_length[species]:
-
             for contig in taxid_contigs[taxid]:
                 species_reads += contig_lengths[contig] * contig_coverages[contig]
                 total_reads_mapped += contig_lengths[contig] * contig_coverages[contig]

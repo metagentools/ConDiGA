@@ -13,8 +13,8 @@ from condiga_utils.gene_utils import (align_genes_to_refs, get_aa_gene_seqs,
 from condiga_utils.genome_utils import (download_genomes, get_ref_ids,
                                         get_ref_lengths,
                                         rename_and_copy_genomes)
-from condiga_utils.taxa_utils import get_taxa_result
 from condiga_utils.species_utils import get_species_stats
+from condiga_utils.taxa_utils import get_taxa_result
 
 __author__ = "Vijini Mallawaarachchi and Yu Lin"
 __copyright__ = "Copyright 2022, ConDiGA Project"

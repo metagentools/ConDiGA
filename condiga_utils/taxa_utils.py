@@ -1,5 +1,4 @@
 def get_taxa_result(taxa, contig_lengths):
-
     taxid_total_len = {}
 
     species_names_taxid = {}
@@ -29,14 +28,19 @@ def get_taxa_result(taxa, contig_lengths):
                 and "phage" not in strings[2]
                 and "cellular organisms" not in strings[2]
             ):
-
                 taxid = strings[1]
 
                 my_species = ""
 
                 if species_strings[0] == "Candidatus" or species_strings[0] == "MAG:":
                     if len(species_strings) > 2:
-                        my_species = species_strings[0] + " " + species_strings[1] + " " + species_strings[2]
+                        my_species = (
+                            species_strings[0]
+                            + " "
+                            + species_strings[1]
+                            + " "
+                            + species_strings[2]
+                        )
                     else:
                         my_species = species_strings[0] + " " + species_strings[1]
                 elif species_strings[1] != "sp.":
@@ -45,7 +49,6 @@ def get_taxa_result(taxa, contig_lengths):
                 #     my_species = strings[2]
 
                 if my_species != "":
-
                     taxid_to_species[taxid] = my_species
                     contig_taxid[strings[0]] = taxid
 
@@ -69,9 +72,9 @@ def get_taxa_result(taxa, contig_lengths):
 
                     if my_species not in species_names_taxid_length:
                         species_names_taxid_length[my_species] = {}
-                        species_names_taxid_length[my_species][
-                            taxid
-                        ] = contig_lengths[strings[0]]
+                        species_names_taxid_length[my_species][taxid] = contig_lengths[
+                            strings[0]
+                        ]
                     else:
                         if taxid not in species_names_taxid_length[my_species]:
                             species_names_taxid_length[my_species][

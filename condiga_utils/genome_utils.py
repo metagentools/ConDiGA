@@ -13,7 +13,6 @@ logger = logging.getLogger("condiga 0.2.0")
 
 
 def download_genomes(taxid_list, assembly_summary, output):
-
     if not os.path.isdir(f"{output}/Assemblies/"):
         subprocess.run(f"mkdir -p {output}/Assemblies/", shell=True)
     else:
@@ -36,11 +35,8 @@ def download_genomes(taxid_list, assembly_summary, output):
         line_count = 0
 
         for row in csv_reader:
-
             if not row[0].startswith("#"):
-
                 if row[5] in taxid_list:
-
                     name = row[0]
                     taxid = row[5]
                     version_status = row[10]
@@ -58,9 +54,7 @@ def download_genomes(taxid_list, assembly_summary, output):
                     )
 
                     if version_status == "latest" and genome_rep == "Full":
-
                         if taxid not in taxid_dates:
-
                             if assembly_level in [
                                 "Complete Genome",
                                 "Contig",
@@ -70,18 +64,16 @@ def download_genomes(taxid_list, assembly_summary, output):
 
                                 command = ""
 
-                                if myurl.startswith('https:'):
+                                if myurl.startswith("https:"):
                                     command = f"rsync -P --copy-links --times --verbose {myurl.replace('https:', 'rsync:')} {output}/Assemblies/"
-                                elif myurl.startswith('ftp:'):
+                                elif myurl.startswith("ftp:"):
                                     command = f"rsync -P --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
-                                
+
                                 if command != "":
                                     subprocess.run(command, shell=True)
 
                                 if os.path.exists(f"{output}/Assemblies/{local_file}"):
-
                                     try:
-
                                         with gzip.open(
                                             f"{output}/Assemblies/{local_file}", "rb"
                                         ) as f_in:
@@ -100,7 +92,6 @@ def download_genomes(taxid_list, assembly_summary, output):
                                         taxid_present[taxid] = True
 
                                     except:
-
                                         if os.path.exists(
                                             f"{output}/Assemblies/{local_file}"
                                         ):
@@ -122,7 +113,6 @@ def download_genomes(taxid_list, assembly_summary, output):
                             )
 
                             if old_diff > new_diff:
-
                                 if not (
                                     (
                                         assembly_level != "Complete Genome"
@@ -134,29 +124,25 @@ def download_genomes(taxid_list, assembly_summary, output):
                                         and taxid_assembly_level[taxid] == "Chromosome"
                                     )
                                 ):
-
                                     if not os.path.exists(
                                         f"{output}/Assemblies/{local_file}"
                                     ):
-                                        
                                         logger.info(f"Downloading from {myurl}")
-                                        
+
                                         command = ""
 
-                                        if myurl.startswith('https:'):
+                                        if myurl.startswith("https:"):
                                             command = f"rsync -P --copy-links --times --verbose {myurl.replace('https:', 'rsync:')} {output}/Assemblies/"
-                                        elif myurl.startswith('ftp:'):
+                                        elif myurl.startswith("ftp:"):
                                             command = f"rsync -P --copy-links --times --verbose {myurl.replace('ftp:', 'rsync:')} {output}/Assemblies/"
-                                        
+
                                         if command != "":
                                             subprocess.run(command, shell=True)
 
                                         if os.path.exists(
                                             f"{output}/Assemblies/{local_file}"
                                         ):
-
                                             try:
-
                                                 with gzip.open(
                                                     f"{output}/Assemblies/{local_file}",
                                                     "rb",
@@ -189,7 +175,6 @@ def download_genomes(taxid_list, assembly_summary, output):
                                                 taxid_present[taxid] = True
 
                                             except:
-
                                                 if os.path.exists(
                                                     f"{output}/Assemblies/{local_file}"
                                                 ):
@@ -202,11 +187,9 @@ def download_genomes(taxid_list, assembly_summary, output):
 
 
 def get_ref_lengths(taxid_present, taxid_file_path):
-
     taxid_file_len = {}
 
     for taxid in taxid_present:
-
         command = (
             'grep -v ">" ' + taxid_file_path[taxid] + " | wc | awk '{print $3-$1}'"
         )
@@ -226,7 +209,6 @@ def rename_and_copy_genomes(
     genome_coverage,
     output,
 ):
-
     if not os.path.isdir(f"{output}/Reference_Sequences/"):
         subprocess.run(f"mkdir -p {output}/Reference_Sequences/", shell=True)
     else:
@@ -237,22 +219,21 @@ def rename_and_copy_genomes(
     n_taxid = 0
 
     with open(f"{output}/species_stats.tsv", "w") as myfile:
-
         myfile.write(f"Species name\tRelative abundance\tGenome coverage\n")
 
         for species in species_rel_abundance:
-
             if (
                 species_rel_abundance[species] > rel_abundance
                 and species_genome_coverages[species] > genome_coverage
             ):
-
                 myfile.write(
                     f"{species}\t{species_rel_abundance[species]}\t{species_genome_coverages[species]}\n"
                 )
                 n_species += 1
 
-                logger.info(f"{n_species} {species}: {species_rel_abundance[species]}, {species_genome_coverages[species]}")
+                logger.info(
+                    f"{n_species} {species}: {species_rel_abundance[species]}, {species_genome_coverages[species]}"
+                )
 
                 for taxid in species_names_taxid_length[species]:
                     n_taxid += 1
@@ -268,7 +249,6 @@ def rename_and_copy_genomes(
 
 
 def get_ref_ids(output):
-
     reference_files = glob.glob(f"{output}/Reference_Sequences/*.fna")
 
     ref_ids = {}
@@ -284,7 +264,6 @@ def get_ref_ids(output):
         )
 
         for item in entries:
-
             myid = item.split(" ")[0][1:]
 
             if ref_name not in ref_ids:

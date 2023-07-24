@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-import click
 import subprocess
+
+import click
 
 __author__ = "Vijini Mallawaarachchi and Yu Lin"
 __copyright__ = "Copyright 2022, ConDiGA Project"

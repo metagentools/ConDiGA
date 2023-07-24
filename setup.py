@@ -26,6 +26,11 @@ setuptools.setup(
     data_files=data_files,
     include_package_data=True,
     scripts=["condiga"],
+    entry_points={
+        "console_scripts": [
+            "convert=condiga_utils.support.convert:main",
+        ],
+    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3",

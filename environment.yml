@@ -9,3 +9,4 @@ dependencies:
   - xlsxwriter
   - tqdm
   - click
+  - taxonkit

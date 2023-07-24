@@ -100,6 +100,12 @@ As an example, let's run [Kraken2](https://ccb.jhu.edu/software/kraken2/) as fol
 kraken2 --threads 16 --db $DBNAME --use-names --output kraken_res_0.1.txt --confidence 0.1 --report kraken_report_0.1.txt MEGAHIT_output/final.contigs.fa
 ```
 
+Now, you can run the `convert` command to convert your result to a form that can be used as input to `condiga`.
+```
+mkdir Kraken
+convert -i kraken_res_0.1.txt -t kraken -o Kraken
+```
+
 ### Step 3: Obtain coverage of contigs
 
 You can use [CoverM](https://github.com/wwood/CoverM) to get the coverage values of contigs as follows.
@@ -129,6 +135,6 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/assembly_summary.txt
 Once you have preprocessed your data and obtained all the necessary files, you can run `condiga` as follows.
 
 ```
-condiga -c final.contigs.fa -ta kraken_res_0.1.txt -g final.contigs.fa.lst -cov contig_coverages.tsv -as assembly_summary.txt -o <output_folder>
+condiga -c final.contigs.fa -ta Kraken/kraken_result.txt -g final.contigs.fa.lst -cov contig_coverages.tsv -as assembly_summary.txt -o <output_folder>
 ```
 

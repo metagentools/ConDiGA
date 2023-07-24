@@ -37,7 +37,7 @@ You can run the following command to install `condiga` using `pip`. Make sure yo
 pip install .
 ```
 
-**Note**: If you use pip to setup ConDiGA, you will have to install [Minimap2](https://github.com/lh3/minimap2#install) manually and add it to your system path.
+**Note**: If you use pip to setup ConDiGA, you will have to install [Minimap2](https://github.com/lh3/minimap2#install) and [TaxonKit](https://github.com/shenwei356/taxonkit) manually and add it to your system path. Irrespective of the package manager, if you want to use Kaiju results, you have to [download and setup the NCBI taxdump database for TaxonKit](https://bioinf.shenwei.me/taxonkit/download/).
 
 ### Test the setup
 

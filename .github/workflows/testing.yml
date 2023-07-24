@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+
+jobs:
+  tests:
+    name: "Python ${{ matrix.python-version }}"
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        shell: bash -el {0}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+
+    steps:
+      - uses: "actions/checkout@v3"
+        with:
+          fetch-depth: 0
+
+      # Setup env
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: condiga
+          environment-file: environment.yml
+          python-version: ${{ matrix.python-version }}
+          auto-activate-base: false
+
+      - name: "Setup Phables on ${{ matrix.os }} for Python ${{ matrix.python-version }}"
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+      
+      - name: "Generate coverage report on ${{ matrix.os }} for Python ${{ matrix.python-version }}"
+        run: |
+          pip install pytest pytest-cov
+          pytest --cov=./ --cov-report xml --cov-report lcov --cov-append
+          
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          parallel: true
+          github-token: ${{ secrets.github_token }}
+          flag-name: run-${{ matrix.test_number }}
+          path-to-lcov: "coverage.lcov"
+
+  finish:
+    needs: tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true

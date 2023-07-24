@@ -132,7 +132,7 @@ def main(input, tool, nthreads, output):
                     blast_accession[strings[0]] = strings[1].split("|")[3]
                     blast_taxid[strings[0]] = strings[2]
 
-        with open(output + "blast_result.txt", "w") as myfile:
+        with open(output + "/blast_result.txt", "w") as myfile:
             for genome in blast_species:
                 myfile.write(
                     f"{genome}\t{blast_taxid[genome]}\t{blast_species[genome]}\t{blast_accession[genome]}\n"

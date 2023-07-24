@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import subprocess
+import sys
 
 import click
 
@@ -71,6 +72,16 @@ def main(input, tool, nthreads, output):
                 )
 
     elif tool.lower() == "kaiju":
+
+        # Check if taxonkit is installed
+        try:
+            p = subprocess.run(["which", "taxonkit"], capture_output=True)
+            if p.returncode != 0:
+                raise Exception("Command does not exist")
+        except:
+            print("taxonkit does not exist. Please install from https://github.com/shenwei356/taxonkit")
+            sys.exit(1)
+
         kaiju_taxid = {}
         kaiju_species = {}
 

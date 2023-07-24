@@ -90,9 +90,11 @@ You have to assemble your reads into contigs using [MEGAHIT](https://github.com/
 megahit -1 Reads/reads_1.fq.gz -2 Reads/reads_2.fq.gz --k-min 21 --k-max 141 -o MEGAHIT_output -t 16
 ```
 
-### Step 2: Run Kraken2 on the contigs
+### Step 2: Taxonomically annotate contigs
 
-Next, you have to run your contigs through [Kraken2](https://ccb.jhu.edu/software/kraken2/) as follows. `$DBNAME` is the path to your Kraken database.
+Next, you have to taxonomically annotate your contigs. You can use any tool such as [Kraken2](https://ccb.jhu.edu/software/kraken2/), [Kaiju](https://bioinformatics-centre.github.io/kaiju/) or even [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi).
+
+As an example, let's run [Kraken2](https://ccb.jhu.edu/software/kraken2/) as follows. `$DBNAME` is the path to your Kraken database.
 
 ```
 kraken2 --threads 16 --db $DBNAME --use-names --output kraken_res_0.1.txt --confidence 0.1 --report kraken_report_0.1.txt MEGAHIT_output/final.contigs.fa

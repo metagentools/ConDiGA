@@ -142,7 +142,7 @@ condiga -c final.contigs.fa -ta Kraken/kraken_result.txt -g final.contigs.fa.lst
 
 ## Citation
 
-If you use ConDiGA in your work, please cite as follows.
+If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2023.04.19.537311v1) as follows.
 
 ```bibtex
 @article {Wu2023.04.19.537311,

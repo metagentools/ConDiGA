@@ -140,3 +140,22 @@ Once you have preprocessed your data and obtained all the necessary files, you c
 condiga -c final.contigs.fa -ta Kraken/kraken_result.txt -g final.contigs.fa.lst -cov contig_coverages.tsv -as assembly_summary.txt -o <output_folder>
 ```
 
+## Citation
+
+If you use ConDiGA in your work, please cite as follows.
+
+```bibtex
+@article {Wu2023.04.19.537311,
+	author = {Enhui Wu and Vijini Mallawaarachchi and Jinzhi Zhao and Yi Yang and Hebin Liu and Xiaoqing Wang and Chengpin Shen and Yu Lin and Liang Qiao},
+	title = {Contigs directed gene annotation (ConDiGA) for accurate protein sequence database construction in metaproteomics},
+	elocation-id = {2023.04.19.537311},
+	year = {2023},
+	doi = {10.1101/2023.04.19.537311},
+	publisher = {Cold Spring Harbor Laboratory},
+	abstract = {Microbiota are closely associated to human health and disease. Metaproteomics can provide a direct means to identify microbial proteins in microbiota for compositional and functional characterization. However, in-depth and accurate metaproteomics is still limited due to the extreme complexity and high diversity of microbiota samples. One of the main challenges is constructing a protein sequence database that best fits the microbiota sample. Herein, we proposed an accurate taxonomic annotation pipeline from metagenomic data for deep metaproteomic coverage, namely contigs directed gene annotation (ConDiGA). We mixed 12 known bacterial species to derive a synthetic microbial community to benchmark metagenomic and metaproteomic pipelines. With the optimized taxonomic annotation strategy by ConDiGA, we built a protein sequence database from the metagenomic data for metaproteomic analysis and identified about 12,000 protein groups, which was very close to the result obtained with the reference proteome protein sequence database of the 12 species. We also demonstrated the practicability of the method in real fecal samples, achieved deep proteome coverage of human gut microbiome, and compared the function and taxonomy of gut microbiota at metagenomic level and metaproteomic level. Our study can tackle the current taxonomic annotation reliability problem in metagenomics-derived protein sequence database for metaproteomics. The unique dataset of metagenomic and the metaproteomic data of the 12 bacterial species is publicly available as a standard benchmarking sample for evaluating various analysis pipelines. The code of ConDiGA is open access at GitHub for the analysis of real microbiota samples.Competing Interest StatementThe authors have declared no competing interest.},
+	URL = {https://www.biorxiv.org/content/early/2023/04/20/2023.04.19.537311},
+	eprint = {https://www.biorxiv.org/content/early/2023/04/20/2023.04.19.537311.full.pdf},
+	journal = {bioRxiv}
+}
+
+```

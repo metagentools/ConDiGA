@@ -86,15 +86,15 @@ Before running ConDiGA, you have to process your data as follows.
 
 ### Step 1: Assemble reads into contigs
 
-You have to assemble your reads into contigs using [MEGAHIT](https://github.com/voutcn/megahit) as follows.
+You have to assemble your reads into contigs using [MEGAHIT](https://github.com/voutcn/megahit) as follows. Currently, ConDiGA only supports MEGAHIT assemblies.
 
 ```
-megahit -1 Reads/reads_1.fq.gz -2 Reads/reads_2.fq.gz --k-min 21 --k-max 141 -o MEGAHIT_output -t 16
+megahit -1 Reads/reads_1.fq.gz -2 Reads/reads_2.fq.gz -o MEGAHIT_output -t 16
 ```
 
 ### Step 2: Taxonomically annotate contigs
 
-Next, you have to taxonomically annotate your contigs. You can use any tool such as [Kraken2](https://ccb.jhu.edu/software/kraken2/), [Kaiju](https://bioinformatics-centre.github.io/kaiju/) or even [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi).
+Next, you have to perform taxonomic annotation on your contigs. You can use any tool such as [Kraken2](https://ccb.jhu.edu/software/kraken2/), [Kaiju](https://bioinformatics-centre.github.io/kaiju/) or even [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi).
 
 As an example, let's run [Kraken2](https://ccb.jhu.edu/software/kraken2/) as follows. `$DBNAME` is the path to your Kraken database.
 
@@ -102,11 +102,14 @@ As an example, let's run [Kraken2](https://ccb.jhu.edu/software/kraken2/) as fol
 kraken2 --threads 16 --db $DBNAME --use-names --output kraken_res_0.1.txt --confidence 0.1 --report kraken_report_0.1.txt MEGAHIT_output/final.contigs.fa
 ```
 
-Now, you can run the `convert` command to convert your result to a form that can be used as input to `condiga`.
+Now, you can run the `convert` command to convert your result to a form that can be used as input to `condiga`. The result will be saved to the `Kraken` folder. Currently, `convert` supports results from Kraken2, Kaiju and BLAST.
+
 ```
 mkdir Kraken
 convert -i kraken_res_0.1.txt -t kraken -o Kraken
 ```
+
+**NOTE:** Since, different annotation tools output results in different formats, you have to format the annotation results using `covert` which will output the result in a standard format readable by ConDiGA.
 
 ### Step 3: Obtain coverage of contigs
 

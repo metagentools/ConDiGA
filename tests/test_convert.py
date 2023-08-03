@@ -51,3 +51,15 @@ def test_convert_version():
     """test condiga version"""
     cmd = "convert --help"
     exec_command(cmd)
+
+def test_convert_kraken(tmp_dir):
+    """test condiga version"""
+    file_name = TEST_ROOTDIR / "data" / "Kraken" / "kraken.out"
+    cmd = f"convert -i {file_name} -t kraken -o {tmp_dir}"
+    exec_command(cmd)
+
+def test_convert_blast(tmp_dir):
+    """test condiga version"""
+    file_name = TEST_ROOTDIR / "data" / "BLAST" / "blast.out"
+    cmd = f"convert -i {file_name} -t blast -o {tmp_dir}"
+    exec_command(cmd)

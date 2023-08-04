@@ -138,6 +138,16 @@ Once you have preprocessed your data and obtained all the necessary files, you c
 condiga -c final.contigs.fa -ta Kraken/kraken_result.txt -g final.contigs.fa.lst -cov contig_coverages.tsv -as assembly_summary.txt -o <output_folder>
 ```
 
+## Output
+
+The output of ConDiGA will contain the following main files and folders.
+
+* `genes.species.mapped.xlsx` contains the gene annotation results
+* `all_genes.fna` contains nucleotide sequences of the predicted genes
+* `all_genes.faa` contains amino acid sequences of the predicted genes
+* `all_genes.output` contains `minimap2` mapping results for the predicted genes
+* `Assemblies` contains FASTA files of the downloaded reference genomes
+
 ## Citation
 
 If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2023.04.19.537311v1) as follows.

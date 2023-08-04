@@ -1,9 +1,9 @@
 # ConDiGA
 
-![GitHub](https://img.shields.io/github/license/metagentools/ConDiGA)
-[![Anaconda-Server Badge](https://anaconda.org/bioconda/condiga/badges/version.svg)](https://anaconda.org/bioconda/condiga)
-
 [![CI](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml/badge.svg)](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml)
+![GitHub](https://img.shields.io/github/license/metagentools/ConDiGA)
+[![DOI](https://img.shields.io/badge/DOI-10.1101/2023.04.19.537311-blue)](https://doi.org/10.1101/2023.04.19.537311)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/condiga/badges/version.svg)](https://anaconda.org/bioconda/condiga)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/metagentools/ConDiGA/develop)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 

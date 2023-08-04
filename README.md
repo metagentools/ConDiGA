@@ -9,34 +9,24 @@
 
 ## Setting up ConDiGA
 
-### Downloading ConDiGA
+### Option 1: Installing ConDiGA using conda (recommended)
 
-You can clone the ConDiGA repository to your machine.
+You can install ConDiGA from bioconda at [https://anaconda.org/bioconda/condiga](https://anaconda.org/bioconda/condiga). Make sure you have [`conda`](https://docs.conda.io/en/latest/) installed.
 
-```
-git clone https://github.com/metagentools/ConDiGA.git
-```
+```bash
+# create conda environment and install condiga
+conda create -n condiga -c conda-forge -c bioconda condiga
 
-Now go into the `ConDiGA` folder using the command
-
-```
-cd ConDiGA/
-```
-
-### Using `conda`
-
-Once you have installed `conda`, make sure you are in the `ConDiGA` folder. Now run the following commands to create a `conda` environment and activate it to run `condiga`.
-
-```
-conda env create -f environment.yml
+# activate environment
 conda activate condiga
 ```
 
-### Using `pip`
-You can run the following command to install `condiga` using `pip`. Make sure you are in the `ConDiGA` folder.
+### Option 2: Installing ConDiGA using pip
 
-```
-pip install .
+You can install ConDiGA from PyPI at [https://pypi.org/project/condiga/](https://pypi.org/project/condiga/). Make sure you have [`pip`](https://pip.pypa.io/en/stable/) installed.
+
+```bash
+pip install condiga
 ```
 
 **Note**: If you use pip to setup ConDiGA, you will have to install [Minimap2](https://github.com/lh3/minimap2#install) and [TaxonKit](https://github.com/shenwei356/taxonkit) manually and add it to your system path. Irrespective of the package manager, if you want to use Kaiju results, you have to [download and setup the NCBI taxdump database for TaxonKit](https://bioinf.shenwei.me/taxonkit/download/).

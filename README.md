@@ -1,9 +1,12 @@
 # ConDiGA
 
 ![GitHub](https://img.shields.io/github/license/metagentools/ConDiGA)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/condiga/badges/version.svg)](https://anaconda.org/bioconda/condiga)
 
 [![CI](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml/badge.svg)](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/metagentools/ConDiGA/develop)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 
 **ConDiGA** (**Con**tigs **Di**rected **G**ene **A**nnotation) is an accurate taxonomic annotation pipeline from metagenomic data to construct accurate protein sequence databases for deep metaproteomic coverage. 
 

@@ -12,7 +12,7 @@ data_files = [(".", ["LICENSE", "README.md"])]
 
 setuptools.setup(
     name="condiga",
-    version="0.2.0",
+    version="0.2.1",
     zip_safe=True,
     author="Vijini Mallawaarachchi and Yu Lin",
     author_email="viji.mallawaarachchi@gmail.com",

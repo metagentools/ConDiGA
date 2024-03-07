@@ -151,7 +151,9 @@ The output of ConDiGA will contain the following main files and folders.
 
 ## Citation
 
-ConDiGA has been accepted for publication at [Microbiome](https://microbiomejournal.biomedcentral.com/). If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2023.04.19.537311v1) for now as follows. Stay tuned for the Microbiome publication.
+ConDiGA has been accepted for publication at [Microbiome](https://microbiomejournal.biomedcentral.com/). Stay tuned for the Microbiome publication.
+
+If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2023.04.19.537311v1) for now as follows. 
 
 ```bibtex
 @article {Wu2023.04.19.537311,
@@ -168,3 +170,4 @@ ConDiGA has been accepted for publication at [Microbiome](https://microbiomejour
 }
 
 ```
+**NOTE:** The database created by ConDiGA is described as MD3 in the manuscript.

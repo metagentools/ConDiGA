@@ -181,8 +181,8 @@ If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.
 ```
 **NOTE:** The database created by ConDiGA is described as MD3 in the manuscript.
 
-Also, please cite the following tools/databases used by ConDiGA.
+Also, please cite the following tools used by ConDiGA and the relevant taxonomic annotation tool used to obtain the initial result.
 
-* Zhu W, Lomsadze A, Borodovsky M. Ab initio gene identification in metagenomic sequences. Nucleic acids research, 38 (12): 132-132 (2010). [https://doi.org/10.1093/nar/gkq275] (https://doi.org/10.1093/nar/gkq275)
+* Zhu W, Lomsadze A, Borodovsky M. Ab initio gene identification in metagenomic sequences. Nucleic acids research, 38 (12): 132-132 (2010). [https://doi.org/10.1093/nar/gkq275](https://doi.org/10.1093/nar/gkq275)
 * Li H. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics, 34:3094-3100 (2018). [https://doi.org/10.1093/bioinformatics/bty191](https://doi.org/10.1093/bioinformatics/bty191)
 * Woodcroft BJ, Newell R, CoverM: Read coverage calculator for metagenomics (2017). [https://github.com/wwood/CoverM](https://github.com/wwood/CoverM)

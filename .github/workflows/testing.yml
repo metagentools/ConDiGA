@@ -30,7 +30,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: condiga
-          environment-file: environment.yml
+          environment-file: build/environment.yml
           python-version: ${{ matrix.python-version }}
           auto-activate-base: false
 

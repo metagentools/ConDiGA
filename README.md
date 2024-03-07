@@ -1,4 +1,8 @@
-# ConDiGA
+<p align="center">
+  <img src="https://raw.githubusercontent.com/metagentools/ConDiGA/develop/condiga_logo.png" width="200" title="condiga logo" alt="condiga logo">
+</p>
+
+# ConDiGA: Contigs Directed Gene Annotation
 
 [![DOI](https://img.shields.io/badge/Preprint_DOI-10.1101/2023.04.19.537311-blue)](https://doi.org/10.1101/2023.04.19.537311)
 [![DOI](https://zenodo.org/badge/531343291.svg)](https://zenodo.org/badge/latestdoi/531343291)
@@ -149,6 +153,11 @@ The output of ConDiGA will contain the following main files and folders.
 * `all_genes.output` contains `minimap2` mapping results for the predicted genes
 * `Assemblies` contains FASTA files of the downloaded reference genomes
 
+# Acknowledgement
+
+The ConDiGA logo was generated using [DALL·E 3](https://openai.com/dall-e-3) from [OpenAI](https://openai.com/) with the following prompt.
+> Create an icon that visually represents the concept of contigs directed gene annotation for a tool logo ensuring the background is completely transparent.
+
 ## Citation
 
 ConDiGA has been accepted for publication at [Microbiome](https://microbiomejournal.biomedcentral.com/). Stay tuned for the Microbiome publication.
@@ -171,3 +180,9 @@ If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.
 
 ```
 **NOTE:** The database created by ConDiGA is described as MD3 in the manuscript.
+
+Also, please cite the following tools/databases used by ConDiGA.
+
+* Zhu W, Lomsadze A, Borodovsky M. Ab initio gene identification in metagenomic sequences. Nucleic acids research, 38 (12): 132-132 (2010). [https://doi.org/10.1093/nar/gkq275] (https://doi.org/10.1093/nar/gkq275)
+* Li H. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics, 34:3094-3100 (2018). [https://doi.org/10.1093/bioinformatics/bty191](https://doi.org/10.1093/bioinformatics/bty191)
+* Woodcroft BJ, Newell R, CoverM: Read coverage calculator for metagenomics (2017). [https://github.com/wwood/CoverM](https://github.com/wwood/CoverM)

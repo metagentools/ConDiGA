@@ -155,11 +155,11 @@ The output of ConDiGA will contain the following main files and folders.
 
 ##  Issues and Questions
 
-If you have any questions, issues or suggestions, please post them under [CondiGA Issues](https://github.com/metagentools/ConDiGA/issues).
+If you have any questions, issues or suggestions, please post them under [ConDiGA Issues](https://github.com/metagentools/ConDiGA/issues).
 
-## Contributing to Phables
+## Contributing to ConDiGA
 
-Are you interested in contributing to the Phables project? If so, you can check out the contributing guidelines in [CONTRIBUTING.md](https://github.com/metagentools/ConDiGA/blob/develop/CONTRIBUTING.md).
+Are you interested in contributing to the ConDiGA project? If so, you can check out the contributing guidelines in [CONTRIBUTING.md](https://github.com/metagentools/ConDiGA/blob/develop/CONTRIBUTING.md).
 
 
 # Acknowledgement
@@ -190,7 +190,7 @@ If you use ConDiGA in your work, please cite the [bioRxiv preprint](https://www.
 ```
 **NOTE:** The database created by ConDiGA is described as MD3 in the manuscript.
 
-Also, please cite the following tools used by ConDiGA and the relevant taxonomic annotation tool used to obtain the initial result.
+Also, please cite the following tools used by ConDiGA, the assembler and the relevant taxonomic annotation tool used to obtain the results.
 
 * Zhu W, Lomsadze A, Borodovsky M. Ab initio gene identification in metagenomic sequences. Nucleic acids research, 38 (12): 132-132 (2010). [https://doi.org/10.1093/nar/gkq275](https://doi.org/10.1093/nar/gkq275)
 * Li H. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics, 34:3094-3100 (2018). [https://doi.org/10.1093/bioinformatics/bty191](https://doi.org/10.1093/bioinformatics/bty191)

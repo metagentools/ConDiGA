@@ -153,6 +153,15 @@ The output of ConDiGA will contain the following main files and folders.
 * `all_genes.output` contains `minimap2` mapping results for the predicted genes
 * `Assemblies` contains FASTA files of the downloaded reference genomes
 
+##  Issues and Questions
+
+If you have any questions, issues or suggestions, please post them under [CondiGA Issues](https://github.com/metagentools/ConDiGA/issues).
+
+## Contributing to Phables
+
+Are you interested in contributing to the Phables project? If so, you can check out the contributing guidelines in [CONTRIBUTING.md](https://github.com/metagentools/ConDiGA/blob/develop/CONTRIBUTING.md).
+
+
 # Acknowledgement
 
 The ConDiGA logo was generated using [DALL·E 3](https://openai.com/dall-e-3) from [OpenAI](https://openai.com/) with the following prompt.

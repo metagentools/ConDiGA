@@ -5,14 +5,14 @@
 # ConDiGA: Contigs Directed Gene Annotation
 
 [![DOI](https://img.shields.io/badge/DOI-10.1186/s40168-024-01775-3-blue)](https://doi.org/10.1186/s40168-024-01775-3)
-[![DOI](https://zenodo.org/badge/531343291.svg)](https://zenodo.org/badge/latestdoi/531343291)
-[![Anaconda-Server Badge](https://anaconda.org/bioconda/condiga/badges/version.svg)](https://anaconda.org/bioconda/condiga)
-[![PyPI version](https://badge.fury.io/py/condiga.svg)](https://badge.fury.io/py/condiga)
-
-[![CI](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml/badge.svg)](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml)
 ![GitHub](https://img.shields.io/github/license/metagentools/ConDiGA)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/metagentools/ConDiGA/develop)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/condiga/badges/version.svg)](https://anaconda.org/bioconda/condiga)
+[![Bioconda Downloads](https://img.shields.io/conda/dn/bioconda/condiga)](https://img.shields.io/conda/dn/bioconda/condiga)
+[![PyPI version](https://badge.fury.io/py/condiga.svg)](https://badge.fury.io/py/condiga)
+[![Downloads](https://static.pepy.tech/badge/condiga)](https://pepy.tech/project/condiga)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/metagentools/ConDiGA/develop)
+[![CI](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml/badge.svg)](https://github.com/metagentools/ConDiGA/actions/workflows/testing.yml)
 
 
 **ConDiGA** (**Con**tigs **Di**rected **G**ene **A**nnotation) is an accurate taxonomic annotation pipeline from metagenomic data to construct accurate protein sequence databases for deep metaproteomic coverage. 

@@ -4,7 +4,7 @@
 
 # ConDiGA: Contigs Directed Gene Annotation
 
-[![DOI](https://img.shields.io/badge/DOI-10.1186/s40168-024-01775-3-blue)](https://doi.org/10.1186/s40168-024-01775-3)
+[![DOI](https://img.shields.io/badge/DOI-10.1186/s40168--024--01775--3-blue)](https://doi.org/10.1186/s40168-024-01775-3)
 ![GitHub](https://img.shields.io/github/license/metagentools/ConDiGA)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/condiga/badges/version.svg)](https://anaconda.org/bioconda/condiga)
 [![Bioconda Downloads](https://img.shields.io/conda/dn/bioconda/condiga)](https://img.shields.io/conda/dn/bioconda/condiga)

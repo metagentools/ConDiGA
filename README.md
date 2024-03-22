@@ -162,7 +162,7 @@ If you have any questions, issues or suggestions, please post them under [ConDiG
 Are you interested in contributing to the ConDiGA project? If so, you can check out the contributing guidelines in [CONTRIBUTING.md](https://github.com/metagentools/ConDiGA/blob/develop/CONTRIBUTING.md).
 
 
-# Acknowledgement
+## Acknowledgement
 
 The ConDiGA logo was generated using [DALL·E 3](https://openai.com/dall-e-3) from [OpenAI](https://openai.com/) with the following prompt.
 > Create an icon that visually represents the concept of contigs directed gene annotation for a tool logo ensuring the background is completely transparent.

@@ -8,7 +8,7 @@ import click
 __author__ = "Vijini Mallawaarachchi and Yu Lin"
 __copyright__ = "Copyright 2022, ConDiGA Project"
 __license__ = "MIT"
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 __maintainer__ = "Vijini Mallawaarachchi"
 __email__ = "viji.mallawaarachchi@gmail.com"
 __status__ = "Development"

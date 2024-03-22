@@ -19,7 +19,7 @@ from condiga_utils.taxa_utils import get_taxa_result
 __author__ = "Vijini Mallawaarachchi and Yu Lin"
 __copyright__ = "Copyright 2022, ConDiGA Project"
 __license__ = "MIT"
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 __maintainer__ = "Vijini Mallawaarachchi"
 __email__ = "viji.mallawaarachchi@gmail.com"
 __status__ = "Development"
@@ -118,7 +118,7 @@ def main(contigs, taxa, genes, coverages, assembly_summary, rel_abundance, genom
     # Setup logger
     # ----------------------------------------------------------------------
 
-    logger = logging.getLogger("condiga 0.2.1")
+    logger = logging.getLogger("condiga 0.2.2")
     logger.setLevel(logging.DEBUG)
     logging.captureWarnings(True)
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
